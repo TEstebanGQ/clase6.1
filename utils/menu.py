@@ -1,4 +1,7 @@
+
+
 def menu():
+
     choise = 0
     print("---------------------------------------------")
     print("--- G E S T I O N  D E  P R O D U C T O S ---")
