@@ -1,4 +1,4 @@
-from json import load, dumps
+from json import load, dumps, decoder
 
 def readFile(fileName):
     try:
@@ -8,6 +8,8 @@ def readFile(fileName):
             file.close()
         return fileData    
     except FileNotFoundError:
+        return []
+    except decoder.JSONDecodeError:
         return []
     
 def saveFile(fileName, data):

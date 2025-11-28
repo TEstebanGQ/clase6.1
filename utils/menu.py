@@ -1,20 +1,16 @@
-
-
-def menu():
-
+def menu(title, options):
     choise = 0
+    index = 1
     print("---------------------------------------------")
     print("--- G E S T I O N  D E  P R O D U C T O S ---")
     print("---------------------------------------------")
-    print("1. Agregar producto")
-    print("2. Mostrar productos")
-    print("3. Editar producto")
-    print("4. Eliminar producto")
-    print("5. Salir del programa\n")
+    for item in options:
+        print(f"{index}. {item}")
+        index += 1    
     while True:
         try:
             choise = int(input("--> ¿Que desea hacer?: "))
-            if choise not in range(1, 6):
+            if choise not in range(1, len(options)+1):
                 print("--> Opción no válida .....")
             else:break
         except ValueError:
