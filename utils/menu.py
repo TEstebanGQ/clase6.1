@@ -2,7 +2,7 @@ def menu(title, options):
     choise = 0
     index = 1
     print("---------------------------------------------")
-    print("--- G E S T I O N  D E  P R O D U C T O S ---")
+    print(f"--- {title} ---")
     print("---------------------------------------------")
     for item in options:
         print(f"{index}. {item}")

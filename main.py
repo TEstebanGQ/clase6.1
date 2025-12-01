@@ -1,6 +1,7 @@
 from utils.menu import menu
 from utils.jsonFileHandler import *
 from utils.utiliListas import *
+from utils.screenControllers import *
 
 
 PRODUCT_FILE_PATH = "./database/products.json"
@@ -10,11 +11,12 @@ options =  (
     "Editar producto",
     "Eliminar producto",
     "BUcscar producto",
-    "Salir del programa"
+    "Salir del programa\n"
 )
 
 while True:
-    choise = menu("--- G E S T I O N  D E  P R O D U C T O S ---", options)
+    limpiarPantalla()
+    choise = menu("G E S T I O N  D E  P R O D U C T O S", options)
     match choise:
         case 1:
             product = {
@@ -73,22 +75,28 @@ while True:
 
 
         case 4:
-            prodoctCode = input("Ingrese el código del producto a eliminar: ")
-            dataProducts = readFile(PRODUCT_FILE_PATH)
-            info = findDictionary(dataProducts, "code", prodoctCode)
-            print(f"Desea borra el producto: {info['data']['code']} - {info['data']['name']}  (S/N)?")
+            productCode = input("Código del producto a eliminar: ")
+            products = readFile(PRODUCT_FILE_PATH)
+            info = findDictionary(products, "code", productCode)
+            if info == {}:
+                print()
+                print("No se encontró un producto con ese código.")
+                break
+            products.pop(info["index"])
+            saveFile(PRODUCT_FILE_PATH, products)
+
+            print(f"Se ha eliminado el producto {info['data']['code']} - {info['data']['name']}")
 
 
         case 5:
-            codeToSearch = input("Ingrese el código del producto a buscar: ")
-            dataProducts = readFile(PRODUCT_FILE_PATH)
-            for product in dataProducts:
-                if product["code"] == codeToSearch:
-                    print("Producto encontrado:")
-                    print(product)
-                    break
+            productCode = input("Coedigo del producto a eliminar: ")
+            products = readFile(PRODUCT_FILE_PATH)
+            info = findDictionary(products, "code", productCode)
+            if len(info.keys()) == 0:
+                print("Codigo no encontrado....")
             else:
-                print("Producto no encontrado.")
+                print("-->> D A T O S  D E L  P R O D U C T O <<--")
+                print(f" CODIGO: {info}['dta]")
         case 0:
             print("Bye!")
             break

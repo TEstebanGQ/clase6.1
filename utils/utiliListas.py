@@ -1,5 +1,5 @@
 def findDictionary(dataList, key, value):
-    info = []
+    info = {}  
     for i in range(len(dataList)):
         if dataList[i].get(key) == value:
             info["index"] = i
